@@ -1,4 +1,5 @@
 //https://github.com/zenorocha/clipboard.js
+new ClipboardJS('.copy')
 
 //保存事件
 document.onkeydown = function(e){
@@ -28,13 +29,6 @@ pathKeyDown = ()=>{
         return false
     }
     return true
-}
-
-var  jump = ()=>{
-    //不进行保存操作
-    btnSave_click = function(){}
-    window.location.href =  $("#txtPath").val().indexOf('/')==0 ? $("#txtPath").val() : ("/"+$("#txtPath").val())
-    return false
 }
 
 //todo load
@@ -112,6 +106,10 @@ function getQueryVariable(variable)
 
 
 $(document).ready(function(){ 
+
+    $('#txtWorker').val(localStorage.getItem('worker' ))
+
+
     // var rPath = getUrlRelativePath()
     // console.log(rPath)
     var task = getQueryVariable('task')
@@ -133,24 +131,15 @@ $(document).ready(function(){
             console.log('err:'+JSON.stringify(err))
         }
     })
-    
-
-    
-
 }); 
 
+function doStartOrStop(){
+
+}
 
 
-
-//tip
-
-tippy('#txtMain', {
-    arrow: true,
-    arrowType: 'round', // or 'sharp' (default)
-    animation: 'fade',
-    placement: 'bottom', // or 'left', 'right', ...
-    trigger: 'click', // or 'focus'
-    content: 'here support markdown, try it'
-  })
-
-
+function keyWorker(){
+    //console.log($('#txtWorker').val())
+    var value = $('#txtWorker').val()
+    localStorage.setItem('worker' , value)
+}
