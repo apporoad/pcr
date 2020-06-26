@@ -4,16 +4,16 @@
         <title>pcr</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="../css/uikit.min.css" />
-        <link rel="stylesheet" href="../css/monokai_sublime.min.css" />
-        <script src="../js/uikit.min.js"></script>
-        <script src="../js/uikit-icons.min.js"></script>
-        <script src="../js/jquery-latest.js"></script>
-        <script src="../js/marked.min.js"></script>
-        <script src="../js/highlight.min.js"></script>
-        <script src="../js/popper.min.js"></script>
-        <script src="../js/tippy.min.js"></script>
-        <script src="../js/clipborad.js"></script>
+        <link rel="stylesheet" href="css/uikit.min.css" />
+        <link rel="stylesheet" href="css/monokai_sublime.min.css" />
+        <script src="js/uikit.min.js"></script>
+        <script src="js/uikit-icons.min.js"></script>
+        <script src="js/jquery-latest.js"></script>
+        <script src="js/marked.min.js"></script>
+        <script src="js/highlight.min.js"></script>
+        <script src="js/popper.min.js"></script>
+        <script src="js/tippy.min.js"></script>
+        <script src="js/clipborad.js"></script>
     </head>
     <style>
         .f3 {
@@ -41,10 +41,11 @@
         <form class="edit all">
             <fieldset class="uk-fieldset all">
                 <div style="height: 100%;">
+                    <input class="hide" id="txtIndex" value="">
                     <input class="hide" id="txtUser" value="test">
                     <input class="hide" id="txtPwd" value="test123">
                     <input id="txtWorker" style="width: 90%;" class="uk-search-input" type="search" onkeyup="keyWorker()" placeholder="here is your worker name">
-                    <input  class="uk-button uk-button-danger  uk-width-1-1 f3" onclick="doStartOrStop()"  type="button" value="start" >
+                    <input id='main' class="uk-button uk-button-danger  uk-width-1-1 f3" onclick="doStartOrStop()"  type="button" value="start" >
                     <input  class="copy uk-button uk-button-primary  uk-width-1-1 f3" data-clipboard-target="#txtUser"  type="button" value="复制账号" >
                     <input  class="copy uk-button uk-button-default  uk-width-1-1 f3" data-clipboard-target="#txtPwd"  type="button" value="复制密码" >
                 </div>
@@ -52,4 +53,4 @@
         </form>
     </body>
 </html>
-<script src="../js/account.js"></script>
+<script src="js/task.js"></script>
