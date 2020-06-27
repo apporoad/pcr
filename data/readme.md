@@ -18,5 +18,5 @@ http://localhost:11540/task.html?type=abc
 
 ## 创建任务
 ```bash
-curl -X POST -d "name=testTaskName&type=abc&status=todo&user=testUser&pwd=123456&date=2020/6/26&worker=m1"  http://localhost:11540/tasks
+curl -X POST -d "name=testTaskName&type=day&status=todo&user=testUser&pwd=123456&date=2020/6/26&worker=m1"  http://localhost:11540/tasks
 ```

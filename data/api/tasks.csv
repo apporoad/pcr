@@ -1,2 +1,5 @@
-index,name,type,status,user,pwd,date,worker,startTime,endTime
-,testTaskName,abc,done,testUser,123456,2020/6/26,m1,22:14:56 GMT+0800 (中国标准时间),22:15:10 GMT+0800 (中国标准时间)
+index,name,type,status,user,pwd,date,worker,endTime,startTime
+,loginTask,login,done,ck686843,833092,2020/6/27,m1,14:53:49 GMT+0800 (CST)
+1,loginTask,login,done,112209519,save11,2020/6/27,m2,14:54:32 GMT+0800 (CST)
+2,loginTask,login,doing,vufd4031,save11,2020/6/27,m3,,14:48:42 GMT+0800 (CST)
+3,loginTask,login,doing,lcoa2853,save11,2020/6/27,m4,,14:50:26 GMT+0800 (CST)
