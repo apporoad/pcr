@@ -1,0 +1,30 @@
+{
+  "name": "pcr-cli.js",
+  "version": "1.0.0",
+  "description": "pcr cli .. ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/apporoad/pcr.git"
+  },
+  "keywords": [
+    "pcr"
+  ],
+  "author": "apporoad",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/apporoad/pcr/issues"
+  },
+  "homepage": "https://github.com/apporoad/pcr#readme",
+  "dependencies": {
+    "cli.config.js": "^1.3.0",
+    "commander": "^5.1.0",
+    "history.node": "^1.0.0",
+    "lisa.utils": "^2.4.0",
+    "mini.req.js": "^1.0.2",
+    "simple-node-logger": "^18.12.24"
+  }
+}

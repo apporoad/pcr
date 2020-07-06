@@ -158,7 +158,7 @@ function doStartOrStop() {
     var worker = localStorage.getItem('worker')
     if ($("#main").val() == 'start') {
         //找到未做任务，今天的
-        var todayTasks = getData('/tasks?status=todo&type=' + getQueryVariable('type') + '&date=' + new Date().toLocaleDateString() + '&order=orderNo' )
+        var todayTasks = getData('/tasks?status=todoing&type=' + getQueryVariable('type') + '&date=' + new Date().toLocaleDateString() + '&order=orderNo' )
         //找到worker与本机一致的任务
         if (todayTasks && todayTasks.length > 0) {
             var task = todayTasks[0]
