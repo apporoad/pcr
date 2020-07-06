@@ -7,9 +7,6 @@ require('history.node').record('pcr')
 var program = require('commander');
 
 var cc = require('cli.config.js').system('pcr')
-    .default({
-
-    })
 
 var main = require('./index')
 var config = cc.get()
@@ -21,28 +18,20 @@ program.version(require('./package.json').version)
 
 program.command('serve')
     .description('开始跑脚本任务')
-    .option('-m,--mount <mount>')
-    .option('-p --port [value]', '端口号，默认是11546')
+    .option('-s,--script <script>')
     .action((options) => {
-        var apiPath = path.join(__dirname, 'api')
-        var sPath = path.resolve(process.cwd(), options.mount || '.')
-        var port = options.port || '11546'
-        var cmd = `aok ${apiPath}  -s  ${sPath}  -p ${port}`
-        var aokProcess = child_process.exec(cmd, (err, out, stdErr) => {
-            if (err) {
-                console.log('执行aok出错： ' + cmd)
-                console.log("如果没有安装aok.js 请执行 sudo npm install  -g aok.js")
-            } else {
-                console.log(out)
-                run(ws, static)
-            }
-        })
+        if(options.script){
+            config.script = options.script
+        }
+        main.serve(config)
+    })
 
-        aokProcess.stdout.on('data', function (data) {
-            console.log(data);
-        })
-        aokProcess.stderr.on('data', function (data) {
-            //console.log('error in aok: ' + data);
-        })
 
+program.command('tasks')
+    .description('根据用户，批量生成任务')
+    .option('-t,--type <type>' , '任务类型')
+    .option('-n,--name [name]', '任务名称')
+    .option('-i,--scriptIndex [scriptIndex]','任务对应脚本的位置，从1开始',parseInt)
+    .action(options =>{
+        main.addTasks(config,options.name,options.type,options.scriptIndex)
     })

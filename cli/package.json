@@ -26,5 +26,8 @@
     "lisa.utils": "^2.4.0",
     "mini.req.js": "^1.0.2",
     "simple-node-logger": "^18.12.24"
+  },
+  "bin" : {
+    "pcr" : "bin.js"
   }
 }
