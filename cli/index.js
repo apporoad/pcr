@@ -41,9 +41,9 @@ const run = (scriptPath, machineName, scriptIndex) => {
     })
 }
 
-exports.serve = async (config) => {
+exports.job = async (config) => {
     config = config || {}
-    config.url = 'http://localhost:11540/'
+    config.url = 'http://localhost:8000/'
     config.interval = 1000
 
     console.log('开始跑《公主连接》主..........')
@@ -62,10 +62,11 @@ exports.serve = async (config) => {
         var freehosts = utils.ArrayRemove(hosts, doingTasks, (a, b) => {
             return b.worker == a.name
         })
-        console.log('free host : ' + JSON.stringify(freehosts))
         if (freehosts.length > 0) {
+            console.log('free host : ' + JSON.stringify(freehosts))
             //找到未执行任务
             var todoTasks = await req.get(config.url + 'tasks?status=todo&date=' + today)
+            //console.log(todoTasks)
             //判断筛选出当前主机能运行的任务
             var availableTasks = utils.ArrayFilter(todoTasks, null, (a, b) => {
                 //console.log(JSON.stringify(b))
@@ -73,12 +74,15 @@ exports.serve = async (config) => {
                     return true
                 }
                 if (utils.ArrayContains(freehosts, b, (a, b) => {
+                    console.log(b ,a.worker)
                         return b.name == a.worker
                     })) {
+                    console.log('sssssssssssssssssssss')
                     return true
                 }
                 return false
             })
+            //console.log(availableTasks)
             if (availableTasks.length > 0) {
                 var task = availableTasks[0]
                 console.log('发现可执行任务：' + JSON.stringify(task))
@@ -97,20 +101,21 @@ exports.serve = async (config) => {
 
 }
 
-exports.addTasks = (config,name,type,scriptIndex,date)=>{
+exports.addTasks = async (config,name,type,scriptIndex,date,status)=>{
     config = config || {}
-    config.url = 'http://localhost:11540/'
+    config.url = 'http://localhost:8000/'
 
     //获取账号信息
-    var accounts = await req.get(config.url + '/account')
+    var accounts = await req.get(config.url + 'account')
     var today = (new Date()).toLocaleDateString().replace(/-/g, '/')
     if(accounts && accounts.length>0){
         for(var i=0;i<accounts.length;i++){
             var acc = accounts[i]
-            await req.post(config.url + '/tasks', {
+            //console.log(acc)
+            await req.post(config.url + 'tasks', {
                 name : name|| 'default',
                 type : type || 'default',
-                status : 'login',
+                status : status ||'todo',
                 user : acc.name,
                 pwd : acc.pwd,
                 date :  date || today,
@@ -121,6 +126,14 @@ exports.addTasks = (config,name,type,scriptIndex,date)=>{
     }
     //{"index":5,"name":"loginTask","type":"login","status":"doing","user":"lcoa2853","pwd":"save11","date":"2020/7/6","worker":"m1","endTime":"","startTime":"20:51:26 GMT+0800 (CST)"}
 
+}
+
+exports.delTasks = async (config)=>{
+    config = config || {}
+    config.url = 'http://localhost:8000/'
+
+    //获取账号信息
+    await req.delete(config.url + 'tasks')
 }
 
 //exports.serve()
